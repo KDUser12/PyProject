@@ -1,0 +1,8 @@
+{
+    "name": "pyproject",
+    "productName": "PyProject",
+    "version": "1.0.0",
+    "description": "PyProject is a project assistant.",
+    "authors" : "KDUser12",
+    "license": "MIT License"
+}
