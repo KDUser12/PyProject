@@ -7,15 +7,18 @@ def json_data(JSON_FILE_PATH):
 
     name = data['productName']
     version = data['version']
+    license = data['license']
 
-    return name, version
+    return name, version, license
 
 class Console:
-    def __init__(self, name, version):
+    def __init__(self, name, version, license):
         super().__init__()
         
         self.name = name
         self.version = version
+        self.license = license
+
 
         print(f"{name} - {version}\n")
         print(f"{name} is a free open-source python project assistant.")
@@ -47,7 +50,7 @@ class Console:
                 print(f"{command['command']}")
 
         elif prompt == 'license':
-            print("MIT License")
+            print(license)
 
         elif prompt == "startproject":
             exec(open('app/packages/startproject.py').read())
@@ -60,5 +63,5 @@ if __name__ == "__main__":
     sys.dont_write_bytecode = True
     JSON_FILE_PATH = 'app/cache/config.json'
 
-    name, version = json_data(JSON_FILE_PATH)
-    Console(name, version)
+    name, version, license = json_data(JSON_FILE_PATH)
+    Console(name, version, license)
