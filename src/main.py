@@ -1,5 +1,4 @@
 # LISTE DES BIBLIOTHEQUES ###################
-import cmd
 import json
 import sys
 import configparser

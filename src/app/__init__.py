@@ -1,10 +1,8 @@
-import cmd
-import json
 import sys
+import json
 
-def JSON_data():
-    JSON_FILE_PATH = "app/cache/config.json"
-    with open(JSON_FILE_PATH, "r") as json_file:
+def json_data(JSON_FILE_PATH):
+    with open(JSON_FILE_PATH, 'r') as json_file:
         data = json.load(json_file)
 
     name = data['productName']
@@ -12,32 +10,55 @@ def JSON_data():
 
     return name, version
 
-class Console(cmd.Cmd):
-    prompt = "> "
-
+class Console:
     def __init__(self, name, version):
         super().__init__()
+        
         self.name = name
         self.version = version
 
         print(f"{name} - {version}\n")
         print(f"{name} is a free open-source python project assistant.")
-        print("If you are new we advise you to type the command \"help\".")
+        print("If you are new we advise you to type the command \"help\".\n\n")
+        
+        while True:
+            prompt = input('> ')
+            Console.commands_management(prompt)
+        
+    def commands_management(prompt):
+        if prompt == 'help':
+            commands = [
+                {
+                    "command": "help",
+                },
+                {
+                    "command": "license",
+                },
+                {
+                    "command": "startproject",
+                },
+                {
+                    "command": "shutdown"
+                }
+            ]
 
-    def do_help(self, arg: str) -> bool | None:
-        return super().do_help(arg)
+            print("==========Commands==========")
+            for command in commands:
+                print(f"{command['command']}")
+
+        elif prompt == 'license':
+            print("MIT License")
+
+        elif prompt == "startproject":
+            exec(open('app/packages/startproject.py').read())
+
+        elif prompt == 'shutdown':
+            sys.exit()
+        
     
-    def do_license(self, arg):
-        print("MIT License\n")
-
-    def do_startproject(self, arg):
-        exec(open("app/packages/startproject.py").read())
-    
-    def do_shutdown(self, arg):
-        return True
-
 if __name__ == "__main__":
     sys.dont_write_bytecode = True
-    name, version = JSON_data()
-    app = Console(name, version)
-    app.cmdloop()
+    JSON_FILE_PATH = 'app/cache/config.json'
+
+    name, version = json_data(JSON_FILE_PATH)
+    Console(name, version)
