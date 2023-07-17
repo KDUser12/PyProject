@@ -41,6 +41,9 @@ class Console:
                     "command": "startproject",
                 },
                 {
+                    "command": "create backup",
+                },
+                {
                     "command": "shutdown"
                 }
             ]
@@ -54,6 +57,9 @@ class Console:
 
         elif prompt == "startproject":
             exec(open('app/packages/startproject.py').read())
+
+        elif prompt == "create backup":
+            exec(open("app/packages/create_backup.py").read())
 
         elif prompt == 'shutdown':
             sys.exit()
