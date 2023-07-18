@@ -1,73 +1,61 @@
-import sys
+from rich.console import Console
 import json
+import sys
 
-def json_data(JSON_FILE_PATH):
-    with open(JSON_FILE_PATH, 'r') as json_file:
-        data = json.load(json_file)
+def json_data(JSON_FILE):
+    with open(JSON_FILE, 'r') as file:
+        data_content = json.load(file)
 
-    name = data['productName']
-    version = data['version']
-    license = data['license']
+    name = data_content['productName']
+    version = data_content['version']
+    license = data_content['license']
 
     return name, version, license
 
-class Console:
-    def __init__(self, name, version, license):
+class ProgramConsole:
+    def __init__(self, console, name, version, license):
         super().__init__()
-        
+
         self.name = name
         self.version = version
         self.license = license
 
+        console.print(f"""{name} - {version}
 
-        print(f"{name} - {version}\n")
-        print(f"{name} is a free open-source python project assistant.")
-        print("If you are new we advise you to type the command \"help\".\n\n")
+{name} is a free and open-source project assistant that makes it easy for you to create your projects.
+It was developed entirely in python and is reserved especially for projects containing python code.
+Compatibility issues may occur if your project is not primarily developed in python.
+
+If you are new we recommend you to enter the command "help".
+
+""")
         
         while True:
-            prompt = input('> ')
-            Console.commands_management(prompt)
-        
-    def commands_management(prompt):
+            prompt = console.input('> ')
+            ProgramConsole.commands_management(console, prompt, license)
+
+    def commands_management(console, prompt, license):
         if prompt == 'help':
-            commands = [
-                {
-                    "command": "help",
-                },
-                {
-                    "command": "license",
-                },
-                {
-                    "command": "startproject",
-                },
-                {
-                    "command": "create backup",
-                },
-                {
-                    "command": "shutdown"
-                }
-            ]
-
-            print("==========Commands==========")
-            for command in commands:
-                print(f"{command['command']}")
-
+            console.print(f"\n==============COMMANDS==============\nhelp / license / credits /\ncreate (project/backup) / shutdown\n")
         elif prompt == 'license':
-            print(license)
-
-        elif prompt == "startproject":
-            exec(open('app/packages/startproject.py').read())
-
-        elif prompt == "create backup":
-            exec(open("app/packages/create_backup.py").read())
-
+            console.print(f"\n{license}\n")
+        elif prompt == 'credits':
+            console.print(f"\nCredits : KDUser12\n")
+        elif prompt.startswith('create'):
+            if 'project' in prompt:
+                exec(open('app/packages/create_project.py').read())
+            elif 'backup' in prompt:
+                exec(open('app/packages/create_backup.py').read())
         elif prompt == 'shutdown':
-            sys.exit()
-        
-    
-if __name__ == "__main__":
-    sys.dont_write_bytecode = True
-    JSON_FILE_PATH = 'app/cache/config.json'
+            sys.exit(1)
+        else:
+            console.print("Error", "Please enter a valid command.")
 
-    name, version, license = json_data(JSON_FILE_PATH)
-    Console(name, version, license)
+        
+if __name__ == '__main__':
+    sys.dont_write_bytecode = True
+    JSON_FILE = 'app/cache/app_config.json'
+    name, version, license = json_data(JSON_FILE)
+
+    console = Console()
+    ProgramConsole(console, name, version, license)
