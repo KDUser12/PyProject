@@ -12,6 +12,7 @@ from app.__init__ import ProgramConsole
 from app.packages.create_project import CreateProject
 from app.packages.build_project import BuildProject
 from app.packages.create_backup import CreateBackup
+from app.packages.load_backup import loadBackup
 
 if __name__ == "__main__":
     # DESACTIVATION DE LA CREATION DE FICHIER ###

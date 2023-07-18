@@ -36,7 +36,7 @@ If you are new we recommend you to enter the command "help".
 
     def commands_management(console, prompt, license):
         if prompt == 'help':
-            console.print(f"\n==============COMMANDS==============\nhelp / license / credits /\ncreate (project/backup) / shutdown\n")
+            console.print(f"\n======================COMMANDS======================\nhelp / license / credits /\ncreate (project/backup) / load backup / shutdown\n")
         elif prompt == 'license':
             console.print(f"\n{license}\n")
         elif prompt == 'credits':
@@ -46,6 +46,9 @@ If you are new we recommend you to enter the command "help".
                 exec(open('app/packages/create_project.py').read())
             elif 'backup' in prompt:
                 exec(open('app/packages/create_backup.py').read())
+        elif prompt.startswith('load'):
+            if 'backup' in prompt:
+                exec(open('app/packages/load_backup.py').read())
         elif prompt == 'shutdown':
             sys.exit(1)
         else:

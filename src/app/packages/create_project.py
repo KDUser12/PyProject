@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 
 class CreateProject:
     def config_project():
@@ -15,6 +16,8 @@ class CreateProject:
     def create_json_file(name, product_name, version, description, authors, project_directory, backup_directory, FILE_PATH):
         print(f"[{datetime.now()}] : JSON file creation in progress...")
 
+        os.makedirs('app/cache/project_data')
+
         json_file_content = f"""
 
 {{
@@ -28,6 +31,7 @@ class CreateProject:
 }}
 
 """     
+        
         with open(FILE_PATH, 'w') as file:
             file.write(json_file_content)
 
