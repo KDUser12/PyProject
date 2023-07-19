@@ -49,6 +49,9 @@ If you are new we recommend you to enter the command "help".
         elif prompt.startswith('load'):
             if 'backup' in prompt:
                 exec(open('app/packages/load_backup.py').read())
+        elif prompt.startswith('delete'):
+            if 'data' in prompt:
+                exec(open('app/packages/delete_data.py').read())
         elif prompt == 'shutdown':
             sys.exit(1)
         else:
