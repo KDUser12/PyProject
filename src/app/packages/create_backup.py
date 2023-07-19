@@ -36,7 +36,7 @@ class CreateBackup:
 }}
 
 """
-
+            os.makedirs('app/cache/project_data/backups_data')
             with open(f'app/cache/project_data/backups_data/backup_{backup_value}.json', 'w') as file:
                 file.write(backup_content)
 

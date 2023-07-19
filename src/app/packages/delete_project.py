@@ -2,7 +2,7 @@ import shutil
 from datetime import datetime
 import json
 
-def delete_data(project_directory):
+def delete_project(project_directory):
     try:
         print("Are you sure you want to delete your project?")
         if input('[Y] [N]\n> ') == 'y':
@@ -31,4 +31,4 @@ if __name__ == '__main__':
     project_directory = json_data(JSON_FILE)
 
     if not project_directory == False:
-        delete_data(project_directory)
+        delete_project(project_directory)
