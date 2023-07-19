@@ -16,7 +16,7 @@ Code structuring is also available in the [documentation/#code-structuring](http
 
 ### Windows
 
-Download the latest [PyProject installer](https://github.com/KDUser12/PyProject/releases/latest). `PyProjectSetup.exe` is 32-bit.
+Download the latest [PyProject installer](https://github.com/KDUser12/PyProject/releases/latest). `PyProjectSetup.exe` is 64-bit.
 
 PyProject will automatically update when a new release is available.
 
