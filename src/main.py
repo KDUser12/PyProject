@@ -1,3 +1,5 @@
+# V1.0.0
+
 # LISTE DES BIBLIOTHEQUES #######################
 import sys
 import json
