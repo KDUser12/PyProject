@@ -52,6 +52,8 @@ If you are new we recommend you to enter the command "help".
         elif prompt.startswith('delete'):
             if 'data' in prompt:
                 exec(open('app/packages/delete_data.py').read())
+            elif 'project' in prompt:
+                exec(open('app/packages/delete_project.py').read())
         elif prompt == 'shutdown':
             sys.exit(1)
         else:
