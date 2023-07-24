@@ -1,3 +1,5 @@
+# V1.0.0
+
 from rich.console import Console
 import json
 import sys
