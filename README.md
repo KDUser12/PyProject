@@ -24,4 +24,4 @@ You can also download `pyproject-windows.zip` (64-bit) from the [releases page](
 
 ## Licence
 
-[MIT](https://github.com/KDUser12/PyProject/blob/main/LICENSE)
+[MIT License](https://github.com/KDUser12/PyProject/blob/main/LICENSE)
