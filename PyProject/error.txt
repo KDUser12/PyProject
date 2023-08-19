@@ -1,0 +1,2 @@
+001 : Le fichier de configuration du programme n'existe pas.
+002 : Le programme a été fermé de manière inattendue
